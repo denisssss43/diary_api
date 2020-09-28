@@ -8,7 +8,7 @@
 default: &default
   adapter: postgresql
   username: sa
-  password: admin
+  password: 1111
   host: 0.0.0.0
   port: 5433
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
