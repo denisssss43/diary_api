@@ -6,7 +6,7 @@ services:
         image: postgres
         container_name: api_pg
         environment: 
-            - POSTGRES_DB=public
+            - POSTGRES_DB=api
             - POSTGRES_USER=sa
             - POSTGRES_PASSWORD=admin
         ports: 
