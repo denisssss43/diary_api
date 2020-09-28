@@ -6,4 +6,4 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-diare.create(title: "Hi", expiration: "29.09.2020", kind: 0)
+Diare.create(title: "Hi", expiration: "29.09.2020", kind: 0)
