@@ -1,2 +1,0 @@
-class Diary < ApplicationRecord
-end
