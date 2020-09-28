@@ -6,4 +6,5 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-d = Diary.create(title: "Hi", expiration: "29.09.2020", kind: 1)
+
+Diary.create(title: "Hi", expiration: "29.09.2020", kind: 1)
