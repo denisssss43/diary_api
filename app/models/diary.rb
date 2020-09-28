@@ -1,4 +1,4 @@
-class Diary < ApplicationRecord
+class Diary < ActiveRecord::Base
     validates :title, presence: true 
     validates :kind, presence: true
     validates :expiration, inclusion: { in: [nil]}, if: :is_public?
