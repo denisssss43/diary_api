@@ -6,6 +6,8 @@ class Diary < ApplicationRecord
     validates :expiration, inclusion: { in: [nil]}, if: :is_public?
     validates :kind, presence: true
 
+    has_many :notes, dependent: :destroy
+
     def is_public?
         kind == :is_public
     end 
