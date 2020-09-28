@@ -10,7 +10,7 @@ default: &default
   username: sa
   password: 1111
   host: 0.0.0.0
-  port: 5433
+  port: 5432
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
