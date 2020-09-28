@@ -6,15 +6,15 @@ services:
         image: postgres
         container_name: api_pg
         environment: 
-            - POSTGRES_USER=sa
-            - POSTGRES_PASSWORD=admin
-            - POSTGRES_DB=api
+            POSTGRES_DB=api
+            POSTGRES_USER=sa
+            POSTGRES_PASSWORD=admin
         ports: 
-            - 5432:5432
+            5432:5432
     redis:
         image: redis
         restart: always
         container_name: api_rd
         ports: 
-            - 6379:6379
+            6379:6379
     
