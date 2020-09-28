@@ -3,7 +3,7 @@ class CreateDiaries < ActiveRecord::Migration[6.0]
     create_table :diaries do |t|
       t.string :title
       t.datetime :expiration
-      t.int :kind
+      t.integer :kind
 
       t.timestamps
     end
