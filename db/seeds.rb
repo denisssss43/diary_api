@@ -7,4 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-Diary.create(title: "Hi", expiration: "29.09.2020", kind: 1)
+d = Diary.create(title: "Diary 1", expiration: nil, kind: :is_public)
+d = Diary.create(title: "Diary 1", expiration: nil, kind: :is_private)
+d = Diary.create(title: "Diary 1", expiration: Time.now + 10.minutes, kind: :is_private)
+d = Diary.create(title: "Diary 1", expiration: Time.now + 10.minutes, kind: :is_private)
