@@ -1,6 +1,6 @@
 class Diary < ApplicationRecord
     
-    enum kind: {public:0, private:1}
+    enum kind: {public:0, private:1}, kind == :public
     
     validates :title, presence: true 
     validates :kind, presence: true
