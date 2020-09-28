@@ -1,5 +1,6 @@
 class Diary < ApplicationRecord
-    enum kind: [:public, :private], prefix: :kind
+    
+    # enum kind: [:public, :private], prefix: :kind
     
     validates :title, presence: true 
     validates :kind, presence: true
