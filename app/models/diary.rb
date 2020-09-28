@@ -1,10 +1,9 @@
-class Diary < ActiveRecord::Base
+class Diary < ApplicationRecord
+    enum kind: [:public, :private]
+    
     validates :title, presence: true 
     validates :kind, presence: true
     validates :expiration, inclusion: { in: [nil]}, if: :is_public?
-
-    enum kind: [:public, :private]
-
 
     def is_public?
         kind == 0
