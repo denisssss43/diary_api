@@ -8,6 +8,6 @@ class Diary < ApplicationRecord
     validates :kind, presence: true
 
     def in_public?
-        kind == 0
+        kind == :in_public
     end 
 end
