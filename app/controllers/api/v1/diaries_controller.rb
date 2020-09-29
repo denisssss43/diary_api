@@ -19,7 +19,7 @@ class Api::V1::DiariesController < ApplicationController
 
     def create
         diary = Diary.new(diary_params)
-        if diary.validated
+        if diary.save
             render json: diary, stasus: :ok
         else
             render json: diary.errors, stasus: :unprocessable_entity
