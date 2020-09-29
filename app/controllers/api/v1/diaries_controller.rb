@@ -1,6 +1,5 @@
 class Api::V1::DiariesController < ApplicationController
 
-    # Список из 100 последних дневников
     def index
         diaries = Diary.order('created_at DESC').take(100)
         render json: diaries, status: :ok
