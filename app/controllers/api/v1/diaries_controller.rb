@@ -13,6 +13,7 @@ class Api::V1::DiariesController < ApplicationController
 
     def create
         diary = Diary.new(diary_params)
+
         if diary.save
             render json: diary, stasus: :ok
         else
