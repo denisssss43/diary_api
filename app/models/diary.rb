@@ -9,6 +9,6 @@ class Diary < ApplicationRecord
     has_many :notes, dependent: :destroy
 
     def in_public?
-        kind == :in_public
+        kind == 0
     end 
 end
