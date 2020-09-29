@@ -1,5 +1,5 @@
 class Diary < ApplicationRecord
-    enum kind: {:in_public, :in_private}
+    enum kind: {in_public:0, in_private:1}
     
     has_many :notes, dependent: :destroy
     # validates :expiration, inclusion: { in: [nil] }, if: :is_public?
