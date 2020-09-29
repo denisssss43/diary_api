@@ -12,7 +12,11 @@ class Api::V1::DiariesController < ApplicationController
     end
 
     def show
-        
+        diary = Diary.find(params[:id])
+
+        render json: diary, stasus: :ok
     end
+
+    # def create
 
 end
