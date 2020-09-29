@@ -3,7 +3,7 @@ class Api::V1::DiariesController < ApplicationController
 
     def show
         render json: {
-            id: @diary.id
+            id: @diary.id 
         }
     end
 
