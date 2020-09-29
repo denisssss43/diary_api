@@ -1,5 +1,4 @@
-class Diary < ApplicationRecord
-    
+class Diary < ApplicationRecord    
     validates :expiration, inclusion: { in: [nil], message: 'is_public diaries can be only nil' }, if: :is_public?
     validates :title, presence: true 
     validates :kind, presence: true
