@@ -1,7 +1,6 @@
 class Diary < ApplicationRecord
     
     validates :expiration, inclusion: { in: [nil] }, if: :in_public?
-    # validates :expiration, presence: true #, if: :is_public?
     validates :title, presence: true 
     validates :kind, presence: true
     
@@ -12,8 +11,8 @@ class Diary < ApplicationRecord
     #     kind == 0
     # end 
 
-    before_validation do
-        self.expiration = nil if kind == 0
-    end
+    # before_validation do
+    #     self.expiration = nil if kind == 0
+    # end
 
 end
