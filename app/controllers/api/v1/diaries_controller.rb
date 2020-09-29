@@ -6,7 +6,7 @@ class Api::V1::DiariesController < ApplicationController
 
     private
         def set_diary
-            @diary = Diary.find(params[:id])
+            @diary = Diary.last # .find(params[:id])
         end
 
 end
