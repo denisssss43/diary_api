@@ -17,6 +17,19 @@ class Api::V1::DiariesController < ApplicationController
         render json: diary, stasus: :ok
     end
 
-    # def create
+    def create
+        diary = Diary.new(diary_params)
+        if diary.save
+            render json: diary, stasus: :ok
+        else
+            render json: diary.errors, stasus: :unprocessable_entity
+        end 
+
+    end
+
+    private 
+        def diary_params
+            params.permit(:title, :expiration, :kind)
+        end
 
 end
