@@ -24,7 +24,6 @@ class Api::V1::DiariesController < ApplicationController
         else
             render json: diary.errors, stasus: :unprocessable_entity
         end 
-
     end
 
     private 
