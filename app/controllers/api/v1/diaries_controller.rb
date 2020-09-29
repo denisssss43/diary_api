@@ -1,12 +1,11 @@
 class Api::V1:DiariesController < ApplicationController
-    before_action :set_diaries
+    before_action :set_diary
 
     def show
-        render 
     end
 
     private
-        def set_diaries
+        def set_diary
             @diary = Diary.find(params[:id])
         end
 
