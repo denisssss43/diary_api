@@ -1,4 +1,4 @@
-class Api::V1:DiaryController < ApplicationController
+class Api::V1:DiariesController < ApplicationController
     before_action :set_diaries
 
     def show
