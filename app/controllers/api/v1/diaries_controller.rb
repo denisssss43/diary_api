@@ -1,7 +1,8 @@
 class Api::V1::DiariesController < ApplicationController
 
+    # Список из 10 последних дневников
     def index
-        diaries = Diary.order('created_at DESC').take(1);
+        diaries = Diary.order('created_at DESC').take(10);
         # render json: {
         #     status: 'SUCCESS', 
         #     message: 'Loaded diaries', 
