@@ -2,7 +2,9 @@ class Api::V1::DiariesController < ApplicationController
     before_action :set_diary
 
     def show
-        print '@diary.id='+@diary.id
+        render json: {
+            id: @diary.id
+        }
     end
 
     private
