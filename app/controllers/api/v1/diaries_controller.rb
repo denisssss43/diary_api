@@ -30,8 +30,8 @@ class Api::V1::DiariesController < ApplicationController
 
     def destroy_expiration
         diaries = Diary.where(["expiration < ?", Time.now])
-        diaries.destroy
-
+        diaries.each do |d| 
+            d.destroy
         render json: diaries, status: :destroy
     end
 
