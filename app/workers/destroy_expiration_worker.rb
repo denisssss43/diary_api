@@ -12,5 +12,4 @@ class DestroyExpirationWorker
             d.destroy
         end
     end
-
 end

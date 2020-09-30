@@ -75,56 +75,110 @@ has_many :notes, dependent: :destroy
 belongs_to :diary
 ```
 
-
-
-
-Available requests:
+### Seed:
+Файл seed: 'db\seeds.rb'
 ```
-GET /domain     # просмотр всех доменов. без параметров
+d = Diary.create(title: "Diary 1", expiration: nil, kind: :is_public)
+d.notes.create(text: "diary_1-note_1: text...")
+d.notes.create(text: "diary_1-note_2: text...")
+d.notes.create(text: "diary_1-note_3: text...")
 
-POST /domain    # добавление домена. пример { "domain": "https://change.org" }
+d = Diary.create(title: "Diary 2", expiration: nil, kind: :is_private)
+d.notes.create(text: "diary_2-note_1: text...")
+d.notes.create(text: "diary_2-note_2: text...")
+d.notes.create(text: "diary_2-note_3: text...")
 
-PUT /domain     # изменение домена. пример { "id": 5, "https://github.com/"}
+d = Diary.create(title: "Diary 3", expiration: Time.now + 10.minutes, kind: :is_private)
+d.notes.create(text: "diary_3-note_1: text...")
+d.notes.create(text: "diary_3-note_2: text...")
+d.notes.create(text: "diary_3-note_3: text...")
 
-DELETE /domain  # удаление домена. пример { "id": 3 }
-
-
-GET /status     # просмотр всей информации. без параметров
-
-
-web: /sidekiq   # панель sidekiq. пароль и логин "admin" (config/initializers/sidekiq.rb)
-
+d = Diary.create(title: "Diary 4", expiration: Time.now + 10.minutes, kind: :is_private)
+d.notes.create(text: "diary_4-note_1: text...")
+d.notes.create(text: "diary_4-note_2: text...")
+d.notes.create(text: "diary_4-note_3: text...")
 ```
 
-Response example /status:
+### API:
+
+Список запросов Diary CRUD:
 ```
-[
-    {
-        "id": 8,
-        "domain": "https://youtube.com",
-        "created_at": "2020-02-21T17:38:22.027Z",
-        "updated_at": "2020-02-21T17:48:17.587Z",
-        "status_is_fine": true,
-        "current_state": "all fine",
-        "expire_days": 61
-    },
-    {
-        "id": 7,
-        "domain": "https://thissitedoesneventexist.com/",
-        "created_at": "2020-02-21T17:25:14.954Z",
-        "updated_at": "2020-02-21T17:42:44.283Z",
-        "status_is_fine": false,
-        "current_state": "Non-SSL error",
-        "expire_days": -1
-    },
-    {
-        "id": 6,
-        "domain": "https://untrusted-root.badssl.com/",
-        "created_at": "2020-02-21T17:25:14.942Z",
-        "updated_at": "2020-02-21T17:48:17.761Z",
-        "status_is_fine": false,
-        "current_state": "certificate verify failed (self signed certificate in certificate chain)",
-        "expire_days": -1
-    }
-]
+GET     /api/v1/diaries         api/v1/diaries#index
+GET     /api/v1/diaries/:id     api/v1/diaries#show
+POST    /api/v1/diaries/:id     api/v1/diaries#create
+PUT     /api/v1/diaries/:id     api/v1/diaries#update
+DELETE  /api/v1/diaries/:id     api/v1/diaries#delete
 ```
+Формат приема Diary API:
+```
+{
+    "title": "...", # Название дневника
+    "expiration": "...", # Дата, после которой дневник будет удален
+    "kind": "..." # Тип дневника [is_public,is_private]
+}
+```
+Формат отдачи Diary API:
+```
+{
+    "id": ..., # id дневника
+    "title": "...", # Название дневника
+    "expiration": "...", # Дата, после которой дневник будет удален
+    "kind": "...", # Тип дневника [is_public,is_private]
+    "created_at": "...", # Дата создания
+    "updated_at": "..." # Дата изменения
+}
+```
+
+Список запросов Note CRUD:
+```
+GET     /api/v1/notes           api/v1/notes#index
+GET     /api/v1/notes/:id       api/v1/notes#show
+POST    /api/v1/notes/:id       api/v1/notes#create
+PUT     /api/v1/notes/:id       api/v1/notes#update
+DELETE  /api/v1/notes/:id       api/v1/notes#delete
+```
+Формат приема Note API:
+```
+{
+    "text": "...", # Текст страницы
+    "diary_id": "..." # Ссылка на дневник, за которым закреплена страница
+}
+```
+Формат отдачи Note API:
+```
+{
+    "id": ..., # id страницы
+    "text": "...", # Текст страницы
+    "created_at": "", # Дата создания
+    "updated_at": "", # Дата изменения
+    "diary_id": ... # Ссылка на дневник, за которым закреплена страница
+}
+```
+
+Список остальных запросов:
+```
+        # Панель sidekiq
+        # Пароль и логин: "admin"
+        # Инициализация "config/initializers/sidekiq.rb"
+        /sidekiq                Sidekiq::Web
+```
+
+
+
+### Sidekiq:
+
+Worker 'destroy_expiration_worker' удаляеть дневники у которых ```expiration < Time.now```
+Worker 'app\workers\destroy_expiration_worker.rb':
+```
+include Sidekiq::Worker
+sidekiq_options retry: false
+def perform
+    puts Time.now
+    diaries = Diary.where(["expiration < ?", Time.now])
+    diaries.each do |d| 
+        d.destroy
+    end
+end
+```
+
+# 123
