@@ -1,0 +1,3 @@
+:schedule:
+    SslWorker:
+      every: ['10s', first_in: '0s']
