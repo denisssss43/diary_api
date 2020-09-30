@@ -41,6 +41,23 @@ redis:
 ```
 
 # Модель:
+Файл 'db\schema.rb':
+```
+create_table "diaries", force: :cascade do |t|
+  t.string "title"
+  t.datetime "expiration"
+  t.integer "kind"
+  t.datetime "created_at", precision: 6, null: false
+  t.datetime "updated_at", precision: 6, null: false
+end
+
+create_table "notes", force: :cascade do |t|
+  t.text "text"
+  t.datetime "created_at", precision: 6, null: false
+  t.datetime "updated_at", precision: 6, null: false
+end
+```
+
 
 
 
