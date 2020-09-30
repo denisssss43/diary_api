@@ -27,13 +27,6 @@ class Api::V1::DiariesController < ApplicationController
         render json: diaries, status: :destroy
     end
 
-    def destroy_expiration
-        diaries = Diary.where(["expiration < ?", Time.now])
-        diaries.each do |d| 
-            d.destroy
-        render json: diaries, status: :destroy
-    end
-
     def update
         diary = Diary.find(params[:id])
 
