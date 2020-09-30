@@ -1,8 +1,7 @@
 class Api::V1::DiariesController < ApplicationController
 
     def index
-        # diaries = Diary.order('created_at DESC').take(100)
-        diaries = Diary.where(["expiration < ?", Time.now]).take(100)
+        diaries = Diary.order('created_at DESC').take(100)
         render json: diaries, status: :ok
     end
 
