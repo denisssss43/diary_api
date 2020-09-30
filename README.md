@@ -1,37 +1,22 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version: 2.7.0p0 (2019-12-25)
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
 Список команд:
-
 ```
-docker-compose up   # запускает в контейнерах postgres и redis
-rails db:migrate    # только в первый раз для миграции
-rails db:seed       # если нужно чем-то заполнить БД
-bundle exec sidekiq     # запускает проверку каждые 20 мин, первый раз сразу (config/sidekiq.yml)
-bundle exec rails server    # запускает сервер rails
+# запускает контейнеры docker-compose
+docker-compose up   
+
+# запускает миграцию в db
+# результат миграции описан в 'db\schema.rb'
+rails db:migrate 
+
+# первичные данные для проверки работы API
+rails db:seed 
+
+# запуск rails-сервера (API)
+bundle exec rails s 
+
+# запускает sidekiq 
+# отработка воркеров описаных в 'app\workers'
+# параметры запуска описаны в 'config/sidekiq.yml'
+bundle exec sidekiq 
 ```
 
 
@@ -55,6 +40,7 @@ redis:
         - 6379:6379
 ```
 
+---Модель
 
 
 
