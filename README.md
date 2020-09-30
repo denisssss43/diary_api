@@ -1,7 +1,7 @@
 # API
 Реализовано API, через которое можно создавать дневники с записями.
 
-## Список команд:
+### Список команд:
 ```
 # запускает контейнеры docker-compose
 docker-compose up   
@@ -22,7 +22,7 @@ bundle exec rails s
 bundle exec sidekiq 
 ```
 
-## Docker-compose:
+### Docker-compose:
 Файл docker-compose:
 ```
 db:
@@ -43,7 +43,7 @@ redis:
         - 6379:6379
 ```
 
-## Модель:
+### Модель:
 Файл 'db\schema.rb':
 ```
 create_table "diaries", force: :cascade do |t|
