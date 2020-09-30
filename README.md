@@ -1,4 +1,7 @@
-# Список команд:
+# API
+Реализовано API, через которое можно создавать дневники с записями.
+
+## Список команд:
 ```
 # запускает контейнеры docker-compose
 docker-compose up   
@@ -19,7 +22,7 @@ bundle exec rails s
 bundle exec sidekiq 
 ```
 
-# Docker-compose:
+## Docker-compose:
 Файл docker-compose:
 ```
 db:
@@ -40,7 +43,7 @@ redis:
         - 6379:6379
 ```
 
-# Модель:
+## Модель:
 Файл 'db\schema.rb':
 ```
 create_table "diaries", force: :cascade do |t|
@@ -58,6 +61,19 @@ create_table "notes", force: :cascade do |t|
 end
 ```
 
+Модель дневника (Diary):
+```
+validates :expiration, inclusion: { in: [nil], message: 'is_public diaries can be only nil' }, if: :is_public?
+validates :title, presence: true 
+validates :kind, presence: true
+enum kind: {is_public:0, is_private:1}
+has_many :notes, dependent: :destroy
+```
+
+Модель страницы (Note):
+```
+belongs_to :diary
+```
 
 
 
