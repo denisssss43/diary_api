@@ -1,3 +1,3 @@
 :schedule:
     DestroyExpirationWorker:
-      every: ['10s', first_in: '0s']
+      every: ['10m', first_in: '0s']
