@@ -8,6 +8,7 @@ class DestroyExpirationWorker
         diaries = Diary.where(["expiration < ?", Time.now])
         diaries.each do |d| 
             d.destroy
+        end
     end
 
 end
