@@ -167,8 +167,7 @@ DELETE  /api/v1/notes/:id       api/v1/notes#delete
 
 ### Sidekiq:
 
-Worker 'destroy_expiration_worker' удаляеть дневники у которых ```expiration < Time.now```
-Worker 'app\workers\destroy_expiration_worker.rb':
+Worker 'destroy_expiration_worker' удаляеть дневники у которых ```expiration < Time.now```:
 ```
 include Sidekiq::Worker
 sidekiq_options retry: false
