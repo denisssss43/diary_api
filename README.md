@@ -1,4 +1,4 @@
-##Список команд:
+# Список команд:
 ```
 # запускает контейнеры docker-compose
 docker-compose up   
@@ -19,7 +19,7 @@ bundle exec rails s
 bundle exec sidekiq 
 ```
 
-##Docker-compose:
+# Docker-compose:
 Файл docker-compose:
 ```
 db:
@@ -40,7 +40,7 @@ redis:
         - 6379:6379
 ```
 
-##Модель:
+# Модель:
 
 
 
