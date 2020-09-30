@@ -5,11 +5,10 @@ class DestroyExpirationWorker
     sidekiq_options retry: false
 
     def perform
-        puts 'DestroyExpirationWorker ' + Time.now 
+        puts Time.now
 
         diaries = Diary.where(["expiration < ?", Time.now])
         diaries.each do |d| 
-            puts 'id: '+ d.id
             d.destroy
         end
     end
